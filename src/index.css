@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .circle {
+        @apply aspect-square rounded-full;
+    }
+
+    .fullname {
+        @apply font-bold text-4xl text-black;
+    }
+
+    .position {
+        @apply font-semibold text-lg text-main;
+    }
+
+    .btn-profile {
+        @apply bg-main w-full text-black font-semibold py-2 px-8 hover:bg-black hover:text-white;
+    }
+}
+
+.main-image-wrapper {
+    width: 17.5rem;
+    position: relative;
+}
+
+.white-circle {
+    position: absolute;
+    background-color: #fff;
+    inset: .6rem;
+}
+
+.image-wrapper {
+    width: 12rem;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    overflow: hidden;
+    z-index: 2;
+}
