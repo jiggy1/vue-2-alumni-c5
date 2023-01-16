@@ -43,12 +43,6 @@ import { formatFullname } from "../utils/formatName";
 export default {
   name: "Card",
   props: ["name", "surname", "cohorte", "image", "firstLetter", "secondLetter"],
-  data() {
-    return {
-      // firstLetter: this.name.charAt(0).toUpperCase(),
-      // secondLetter: this.surname.charAt(0).toUpperCase()
-    };
-  },
   computed: {
     displayFullname() {
       const fullname = this.name + " " + this.surname;

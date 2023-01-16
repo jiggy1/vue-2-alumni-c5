@@ -1,8 +1,10 @@
 <template>
-  <div class="flex divide-x">
+  <div class="flex">
     <SideBar />
 
-    <div class="w-full pb-10">
+    <div
+      class="w-full pb-10 max-w-[93rem] mx-auto h-screen flex flex-col justify-center gap-20"
+    >
       <div
         class="grid mx-auto grid-cols-1 w-fit gap-x-24 gap-y-32 py-10 md:grid-cols-2 2xl:grid-cols-3 5xl:grid-cols-4"
       >
@@ -27,14 +29,16 @@
               >Précédent</a
             >
           </li>
-          <li v-for="index in totalPages" :key="index">
-            <a
-              href="#"
-              class="px-3 py-2 leading-tight !text-black !bg-main hover:!bg-black hover:!text-white"
-              @click="() => getPage(index)"
-              >{{ index }}</a
-            >
-          </li>
+          <div class="flex flex-wrap gap-y-4 gap-x-1 mx-1">
+            <li v-for="index in totalPages" :key="index">
+              <a
+                href="#"
+                class="px-3 py-2 leading-tight !text-black !bg-main hover:!bg-black hover:!text-white"
+                @click="getPage(index)"
+                >{{ index }}</a
+              >
+            </li>
+          </div>
           <li>
             <a
               href="#"
@@ -73,22 +77,37 @@ export default {
   mounted() {
     this.getAllData();
   },
-  updated() {},
   methods: {
     async getAllData() {
-      const res = await fetch("https://api.participants.odc.ci/participants", {
+      const res = await fetch("http://192.168.252.203:8096/participants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ size: this.size, page: this.currentPage }),
-      }).then((data) => data.json());
+        body: JSON.stringify({
+          page: this.totalPages,
+          size: this.size,
+          recherche: "string",
+          departementCode: "string",
+          programmes: ["string"],
+        }),
+      }).then((data) => {
+        return data.json();
+      });
       this.getData(res);
     },
     async getPage(page) {
-      const res = await fetch("https://api.participants.odc.ci/participants", {
+      const res = await fetch("http://192.168.252.203:8096/participants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ size: this.size, page }),
-      }).then((data) => data.json());
+        body: JSON.stringify({
+          page,
+          size: this.size,
+          recherche: "string",
+          departementCode: "string",
+          programmes: ["string"],
+        }),
+      }).then((data) => {
+        return data.json();
+      });
       this.getData(res);
     },
 
