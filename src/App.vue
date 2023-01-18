@@ -1,10 +1,11 @@
 <template>
-  <div class="flex">
-    <SideBar />
+  <div class="w-full py-10 min-h-screen">
+    <!-- <SideBar /> -->
 
     <div
-      class="w-full pb-10 max-w-[93rem] mx-auto h-screen flex flex-col justify-center gap-20"
+      class="w-full max-w-[93rem] mx-auto flex flex-col justify-center gap-20"
     >
+      <boitede-rech />
       <div
         class="grid mx-auto grid-cols-1 w-fit gap-x-24 gap-y-32 py-10 md:grid-cols-2 2xl:grid-cols-3 5xl:grid-cols-4"
       >
@@ -53,6 +54,7 @@
 </template>
 
 <script>
+import BoitedeRech from "./components/BoitedeRech.vue";
 import SideBar from "./components/SideBar.vue";
 import Card from "./components/Card.vue";
 import SearchBar from "./components/SearchBar.vue";
@@ -60,6 +62,7 @@ import SearchBar from "./components/SearchBar.vue";
 export default {
   name: "App",
   components: {
+    BoitedeRech,
     SideBar,
     SearchBar,
     Card,
